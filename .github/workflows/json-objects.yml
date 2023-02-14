@@ -3,7 +3,7 @@ name: Read Json Object Values
 on:
   push:
     branches: 
-      - master
+      - main
       
 jobs:
 
@@ -17,7 +17,7 @@ jobs:
 
     - name: Extract and log the JSON key-values.
       run: |
-        keys_and_values=$(echo ${{ secrets.JSON_KEYS }} | jq -r 'to_entries[] | "\(.key)=\(.value)"')
+        keys_and_values=$(echo ${{ secrets.JSON_VALUE }} | jq -r 'to_entries[] | "\(.key)=\(.value)"')
         for key_value in $keys_and_values; do
           echo $key_value
         done
