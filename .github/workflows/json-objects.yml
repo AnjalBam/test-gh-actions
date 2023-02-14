@@ -21,3 +21,11 @@ jobs:
         for key_value in $keys_and_values; do
           echo $key_value
         done
+        
+    - name: Extract value only
+      run: |
+        values=$(echo ${{ secrets.JSON_VALUE }} | jq -r 'to_entries[] | "\(.value)"')
+        for value in $values; do 
+          echo $value
+        done
+        
