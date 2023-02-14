@@ -9,7 +9,7 @@ jobs:
 
   extract-keys:
 
-    runs-on: [self-hosted, awsrunner2]
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout
