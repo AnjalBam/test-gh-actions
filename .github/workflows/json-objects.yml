@@ -1,0 +1,23 @@
+name: Read Json Object Values
+
+on:
+  push:
+    branches: 
+      - master
+      
+jobs:
+
+  extract-keys:
+
+    runs-on: [self-hosted, awsrunner2]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Extract and log the JSON key-values.
+      run: |
+        keys_and_values=$(echo ${{ secrets.KEYS }} | jq -r 'to_entries[] | "\(.key)=\(.value)"')
+        for key_value in $keys_and_values; do
+          echo $key_value
+        done
